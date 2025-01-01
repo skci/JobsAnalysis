@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问答系统</title>
+    <link href="../static/img/logo.png" rel="icon" type="image/x-ico">
+
+    <!-- 此模板的自定义字体 -->
+    <link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/vendor/fonts.css" rel="stylesheet">
+
+    <!-- 此模板的自定义样式 -->
+    <link href="../static/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- 此页面的自定义样式 -->
+    <link href="../static/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div style="width:350px;height:80px;margin: auto;font-size: 40px;margin: auto; ">
+    </div>-
+    <div style="width: 600px;height: 600px;margin: auto">
+        <form action="/getdata" method="get" >
+            <div>
+                <label for="username">账号：</label>
+                <input type="text" name="username" id="username" style="width: 400px"/>
+                <button type="submit" value="提交" style="background-color: red"/>
+            </div>
+            <div><label for="password">密码：</label></div>
+            <div>
+                <textarea name="password" id="password" cols="90" rows="20" disabled="disabled" style="border:1px solid">{{content}}</textarea>
+            </div>
+        </form>
+        <form
+            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+            action="/getdata" method="get">
+            
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="搜索..."
+                    aria-label="Search" aria-describedby="basic-addon2" name="username">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

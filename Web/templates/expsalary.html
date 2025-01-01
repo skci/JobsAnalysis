@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>招聘数据分析 - 资历薪资变化</title>
+    <link href="../static/img/logo.png" rel="icon" type="image/x-ico">
+    
+    <!-- 此模板的自定义字体 -->
+    <link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/vendor/fonts.css" rel="stylesheet">
+
+    <!-- 此模板的自定义样式 -->
+    <link href="../static/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- 此页面的自定义样式 -->
+    <link href="../static/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="../static/js/echarts.js"></script>
+</head>
+
+<body id="page-top">
+
+    <!--页面包装器-->
+    <div id="wrapper">
+
+        <!--侧边栏-->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!--侧边栏 - 品牌-->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">岗位数据分析</div>
+            </a>
+
+            <!--分割线-->
+            <hr class="sidebar-divider my-0">
+
+            <!--导航项 - 仪表板-->
+            <li class="nav-item active">
+                <a class="nav-link" href="/index">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>仪表盘</span></a>
+            </li>
+
+            <!-- 分割线 -->
+            <hr class="sidebar-divider">
+
+            <!-- 标题 -->
+            <div class="sidebar-heading">
+                可视化图表
+            </div>
+
+            <!-- 可展开导航项 - 城市平均薪资 -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-chart-bar"></i>
+                    <span>城市平均薪资</span>
+                </a>
+                <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">请选择岗位:</h6>
+                        <a class="collapse-item" href="/citysalary/Python开发">Python开发</a>
+                        <a class="collapse-item" href="/citysalary/Java开发">Java开发</a>
+                        <a class="collapse-item" href="/citysalary/前端开发">前端开发</a>
+                        <a class="collapse-item" href="/citysalary/数据库开发">数据库开发</a>
+                        <a class="collapse-item" href="/citysalary/PHP开发">PHP开发</a>
+                        <a class="collapse-item" href="/citysalary/软件测试">软件测试</a>
+                        <a class="collapse-item" href="/citysalary/数据分析">数据分析</a>
+                        <a class="collapse-item" href="/citysalary/人工智能">人工智能</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- 可展开导航项 - 城市平均薪资 -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-chart-line"></i>
+                    <span>资历薪资变化</span>
+                </a>
+                <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">请选择岗位:</h6>
+                        <a class="collapse-item" href="/expsalary/Python开发">Python开发</a>
+                        <a class="collapse-item" href="/expsalary/Java开发">Java开发</a>
+                        <a class="collapse-item" href="/expsalary/前端开发">前端开发</a>
+                        <a class="collapse-item" href="/expsalary/数据库开发">数据库开发</a>
+                        <a class="collapse-item" href="/expsalary/PHP开发">PHP开发</a>
+                        <a class="collapse-item" href="/expsalary/软件测试">软件测试</a>
+                        <a class="collapse-item" href="/expsalary/数据分析">数据分析</a>
+                        <a class="collapse-item" href="/expsalary/人工智能">人工智能</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- 可展开导航项 - 城市岗位需求 -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-handshake"></i>
+                    <span>城市岗位需求</span>
+                </a>
+                <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">请选择岗位:</h6>
+                        <a class="collapse-item" href="/cityjob/Python开发">Python开发</a>
+                        <a class="collapse-item" href="/cityjob/Java开发">Java开发</a>
+                        <a class="collapse-item" href="/cityjob/前端开发">前端开发</a>
+                        <a class="collapse-item" href="/cityjob/数据库开发">数据库开发</a>
+                        <a class="collapse-item" href="/cityjob/PHP开发">PHP开发</a>
+                        <a class="collapse-item" href="/cityjob/软件测试">软件测试</a>
+                        <a class="collapse-item" href="/cityjob/数据分析">数据分析</a>
+                        <a class="collapse-item" href="/cityjob/人工智能">人工智能</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- 可展开导航项 - 行业技术分析 -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-microchip"></i>
+                    <span>行业技能分析</span>
+                </a>
+                <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">请选择岗位:</h6>
+                        <a class="collapse-item" href="/jobskill/Python开发">Python开发</a>
+                        <a class="collapse-item" href="/jobskill/Java开发">Java开发</a>
+                        <a class="collapse-item" href="/jobskill/前端开发">前端开发</a>
+                        <a class="collapse-item" href="/jobskill/数据库开发">数据库开发</a>
+                        <a class="collapse-item" href="/jobskill/PHP开发">PHP开发</a>
+                        <a class="collapse-item" href="/jobskill/软件测试">软件测试</a>
+                        <a class="collapse-item" href="/jobskill/数据分析">数据分析</a>
+                        <a class="collapse-item" href="/jobskill/人工智能">人工智能</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- 导航项 - 表格 -->
+            <li class="nav-item">
+                <a class="nav-link" href="/table">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>所有数据</span></a>
+            </li>
+
+            <!-- 分割线 -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- 侧边栏切换器（侧边栏） -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- 侧边栏结束 -->
+
+        <!--内容包装器-->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- 主要内容 -->
+            <div id="content">
+
+                <!-- 顶部栏 -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                  <!-- 侧边栏切换（顶部栏） -->
+                  <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                      <i class="fa fa-bars"></i>
+                  </button>
+                
+                  <!-- 顶部栏搜索 -->
+                  <form
+                      class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                      <div class="input-group">
+                          <input type="text" class="form-control bg-light border-0 small" placeholder="新建爬虫任务..."
+                              aria-label="Search" aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+                              <button class="btn btn-primary" type="button">
+                                  <i class="fas fa-search fa-sm"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </form>
+                
+                  <!-- 顶部栏导航栏 -->
+                  <ul class="navbar-nav ml-auto">
+                
+                      <!-- 导航项目 - 搜索下拉列表（仅 XS 可见） -->
+                      <li class="nav-item dropdown no-arrow d-sm-none">
+                          <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-search fa-fw"></i>
+                          </a>
+                          <!-- 下拉列表 - 消息 -->
+                          <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                              aria-labelledby="searchDropdown">
+                              <form class="form-inline mr-auto w-100 navbar-search">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control bg-light border-0 small"
+                                          placeholder="Search for..." aria-label="Search"
+                                          aria-describedby="basic-addon2">
+                                      <div class="input-group-append">
+                                          <button class="btn btn-primary" type="button">
+                                              <i class="fas fa-search fa-sm"></i>
+                                          </button>
+                                      </div>
+                                  </div>
+                              </form>
+                          </div>
+                      </li>
+              
+                      <!-- 导航项 - 消息 -->
+                      <li class="nav-item dropdown no-arrow mx-1">
+                          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-envelope fa-fw"></i>
+                              <!--计数器 - 消息-->
+                              <span class="badge badge-danger badge-counter"><!-- 2 --></span>
+                          </a>
+                          <!--下拉列表 - 消息 -->
+                          <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                              aria-labelledby="messagesDropdown">
+                              <h6 class="dropdown-header">
+                                  消息中心
+                              </h6>
+                              <a class="dropdown-item text-center small text-gray-500" href="#">阅读更多消息</a>
+                          </div>
+                      </li>
+                
+                      <div class="topbar-divider d-none d-sm-block"></div>
+                
+                      <!--导航项 - 用户信息 -->
+                      <li class="nav-item dropdown no-arrow">
+                          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="mr-2 d-none d-lg-inline text-gray-600 small">刘晓康</span>
+                              <img class="img-profile rounded-circle"
+                                  src="../static/img/undraw_profile.svg">
+                          </a>
+                          <!-- 下拉列表 - 用户信息 -->
+                          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                              aria-labelledby="userDropdown">
+                              <!-- <a class="dropdown-item" href="#">
+                                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                  简介
+                              </a> -->
+                              <!-- <a class="dropdown-item" href="#">
+                                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                  设置
+                              </a>
+                              <a class="dropdown-item" href="#">
+                                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                  日志
+                              </a> -->
+                              <!-- <div class="dropdown-divider"></div> -->
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                  注销
+                              </a>
+                          </div>
+                      </li>
+                
+                  </ul>
+                
+                </nav>
+                <!-- 顶部栏结束 -->
+
+                <!--开始页面内容-->
+                <div class="container-fluid">
+
+                    <!-- 页面标题 -->
+                    <h1 class="h3 mb-2 text-gray-800">资历薪资变化</h1>
+                    <p class="mb-4">一般来说学历越高，随着年限薪酬增幅越为明显。资历薪资变化可以看出不同岗位在不同学历、不同工作经验下的薪资水平变化趋势，还能看出不同学历之间的薪资差异。</p>
+                            
+                    <!-- 内容行-->
+                    <div class="row">
+
+                        <div class="col-xl-10 col-lg-10">
+
+                          <!-- 面积图 -->
+                          <div class="card shadow mb-4">
+                              <div class="card-header py-3">
+                                  <h6 class="m-0 font-weight-bold text-primary">{{job}} - 薪资变化</h6>
+                              </div>
+                              <div class="card-body">
+                                  <div class="chart-area">
+                                    <div id="expsalary" style="width: 100%;height:100%;"></div>
+                                    <script>
+                                    window.onresize = function() {
+                                      myChart.resize();
+                                    };
+                                      var chartDom = document.getElementById('expsalary');
+                                      var myChart = echarts.init(chartDom);
+                                      var option;
+                                      
+                                      setTimeout(function () {
+                                        option = {
+                                          legend: {},
+                                          tooltip: {
+                                            trigger: 'axis',
+                                            showContent: false
+                                          },
+                                          toolbox: {
+                                            show: true,
+                                            orient: 'vertical',
+                                            left: 'right',
+                                            top: 'center',
+                                            feature: {
+                                                mark: { show: true },
+                                                magicType: { show: true, type: ['line', 'bar'] },
+                                                restore: { show: true },
+                                                saveAsImage: { show: true }
+                                            }
+                                          },
+                                          dataset: {
+                                            source: {{source|tojson}}
+                                          },
+                                          xAxis: { type: 'category' },
+                                          yAxis: { gridIndex: 0 },
+                                          grid: { top: '55%' },
+                                          series: [
+                                            {
+                                              type: 'line',
+                                              smooth: true,
+                                              seriesLayoutBy: 'row',
+                                              emphasis: { focus: 'series' }
+                                            },
+                                            {
+                                              type: 'line',
+                                              smooth: true,
+                                              seriesLayoutBy: 'row',
+                                              emphasis: { focus: 'series' }
+                                            },
+                                            {
+                                              type: 'line',
+                                              smooth: true,
+                                              seriesLayoutBy: 'row',
+                                              emphasis: { focus: 'series' }
+                                            },
+                                            {
+                                              type: 'line',
+                                              smooth: true,
+                                              seriesLayoutBy: 'row',
+                                              emphasis: { focus: 'series' }
+                                            },
+                                            {
+                                              type: 'line',
+                                              smooth: true,
+                                              seriesLayoutBy: 'row',
+                                              emphasis: { focus: 'series' }
+                                            },      
+                                            {
+                                              type: 'line',
+                                              smooth: true,
+                                              seriesLayoutBy: 'row',
+                                              emphasis: { focus: 'series' }
+                                            },
+                                            {
+                                              type: 'pie',
+                                              id: 'pie',
+                                              radius: '30%',
+                                              center: ['50%', '30%'],
+                                              emphasis: {
+                                                focus: 'self'
+                                              },
+                                              label: {
+                                                formatter: '{b}: {@经验不限}'
+                                              },
+                                              encode: {
+                                                itemName: 'product',
+                                                value: '经验不限',
+                                                tooltip: '经验不限'
+                                              }
+                                            }
+                                          ]
+                                        };
+                                        myChart.on('updateAxisPointer', function (event) {
+                                          const xAxisInfo = event.axesInfo[0];
+                                          if (xAxisInfo) {
+                                            const dimension = xAxisInfo.value + 1;
+                                            myChart.setOption({
+                                              series: {
+                                                id: 'pie',
+                                                label: {
+                                                  formatter: '{b}: {@[' + dimension + ']}K'
+                                                },
+                                                encode: {
+                                                  value: dimension,
+                                                  tooltip: dimension
+                                                }
+                                              }
+                                            });
+                                          }
+                                        });
+                                        myChart.setOption(option);
+                                      });
+                                      
+                                      option && myChart.setOption(option);
+                                      
+                                      </script>
+                                  </div>
+                                  <hr>
+                                  本科的占比来说是比较大的，从现实工作中来看，硕士和博士只有大型上市企业会有要求，市面上的大部分公司还是要求硕士或者本科，大专和中专越来越被边缘化，工作内容也相对比较简单。薪资肯定是学历越高薪水越高，学历是个敲门砖，如果专科技术比较强，一般公司也可以接受。如果专科生想要更好的发展，提升学历或许有一定的作用。当然毋庸置疑经验越多，工资越高，其中3-5年的占比较多，也有企业愿意招经验较少的自己培养，当然前期不要太在乎钱，主要是成长。
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!--主要内容结束-->
+
+            <!-- 页脚 -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; My Website 2022</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- 页脚结束 -->
+
+        </div>
+        <!--内容包装结束-->
+
+    </div>
+    <!--页面结束包装器-->
+
+    <!-- 滚动到顶部按钮 -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- 注销确认 -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">确认注销？</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">如果您已准备好注销当前账户，请选择下面的“注销”。</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                    <a class="btn btn-primary" href="/login">注销</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../static/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="../static/vendor/chart.js/Chart.min.js"></script>
+
+</body>
+
+</html>
